@@ -1,0 +1,106 @@
+chorus-lapilli.txt
+
+1. Project Setup
+----------------
+1.1 Initialized the React App:
+    - Command executed:
+      npx create-react-app chorus-lapilli
+    - Changed directory to the project folder:
+      cd chorus-lapilli
+
+1.2 Installed Dependencies:
+    - Installed necessary packages:
+      npm install
+      pip install selenium
+
+1.3 Created Component Files:
+    - Added the following files inside the 'src' folder:
+      - Board.js
+      - Square.js
+
+-------------------------
+2. Building the Game Logic
+-------------------------
+2.1 Created the Board Component:
+    - Implemented game logic to allow players to place pieces.
+    - Ensured that after the third piece is placed, players must move existing pieces instead of adding new ones.
+
+2.2 Implemented Win Logic:
+    - Added a function to check for three-in-a-row winning conditions:
+      ```
+      function checkWin(squares) {
+        const lines = [
+          [0, 1, 2], [3, 4, 5], [6, 7, 8], 
+          [0, 3, 6], [1, 4, 7], [2, 5, 8], 
+          [0, 4, 8], [2, 4, 6]
+        ];
+        for (let [a, b, c] of lines) {
+          if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+            return squares[a];
+          }
+        }
+        return null;
+      }
+      ```
+
+2.3 Enforced Movement Rules:
+    - Limited each player to have only three pieces on the board at a time.
+    - If three pieces are already on the board, the player must select an existing piece and move it to an adjacent tile.
+    - Used the following function to check if a move is valid:
+      ```
+      function isAdjacent(from, to) {
+        const adjacentPositions = [from - 1, from + 1, from - 3, from + 3];
+        return adjacentPositions.includes(to);
+      }
+      ```
+
+2.4 Added Click Handling:
+    - Allowed users to select a piece for movement and move it to an adjacent empty tile.
+    - Prevented overwriting an occupied square and displayed alerts for invalid moves.
+
+--------------------------
+3. Testing the Application
+--------------------------
+3.1 Set Up Selenium for Testing:
+    - Installed Selenium via pip:
+      pip install selenium
+
+3.2 Configured WebDriver:
+    - Moved the `chromedriver` binary to `/usr/local/bin`:
+      sudo mv chromedriver /usr/local/bin/
+
+3.3 Created Test Cases in Text.py:
+    - Implemented tests to ensure the game behaves correctly:
+      - **Test 1**: Ensured the board starts empty.
+      - **Test 2**: Verified that clicking a tile places the correct symbol.
+
+3.4 Ran the Tests:
+    - Command executed:
+      python3 Text.py --browser chrome
+    - Output:
+      ```
+      ..
+      ----------------------------------------------------------------------
+      Ran 2 tests in 21.062s
+
+      OK
+      ```
+
+-----------------------------------
+4. Packaging the Application
+-----------------------------------
+4.1 Created a Tarball for Submission:
+    - Ran npm pack to create a gzipped tarball:
+      ```
+      npm pack --dry-run
+      ```
+    - Verified the output and then created the final tarball:
+      ```
+      npm pack
+      ```
+
+4.2 Submission:
+    - Files submitted:
+      - chorus-lapilli.txt (this log)
+      - chorus-lapilli.tgz (the tarball)
+

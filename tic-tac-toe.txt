@@ -1,0 +1,15 @@
+# Tic-Tac-Toe Development Log
+
+## Step 1: Initial Setup
+1. Installed Node.js and npm (Node Package Manager) on my local machine.
+   - Verified installation: `node -v` and `npm -v`
+
+2. Created a new React app named `tic-tac-toe` using the following command:
+   ```bash
+   npx create-react-app tic-tac-toe
+   npm start to play the game 
+
+Added 
+1. import './App.css'; to index.js 
+2. Used code from https://react.dev/learn/tutorial-tic-tac-toe to make the game look nocer with css
+
